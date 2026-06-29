@@ -1,0 +1,4 @@
+{
+  "*.json": ["npx prettier --write"],
+  "*.md": ["npx prettier --write"]
+}

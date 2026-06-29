@@ -1,0 +1,44 @@
+{
+  "extends": ["@commitlint/config-conventional"],
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "ci",
+        "revert"
+      ]
+    ],
+    "scope-enum": [
+      2,
+      "always",
+      [
+        "dashboard",
+        "shared",
+        "vitals",
+        "patients",
+        "alerts",
+        "auth",
+        "ui",
+        "api",
+        "testing",
+        "deps"
+      ]
+    ],
+    "subject-case": [2, "never", ["start-case", "pascal-case", "upper-case"]],
+    "subject-full-stop": [2, "never", "."],
+    "subject-empty": [2, "never"],
+    "type-case": [2, "always", "lowercase"],
+    "type-empty": [2, "never"],
+    "scope-case": [2, "always", "lowercase"],
+    "scope-empty": [2, "always"]
+  }
+}
