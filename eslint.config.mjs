@@ -5,7 +5,14 @@ import nxPlugin from '@nx/eslint-plugin';
 
 export default [
   {
-    ignores: ['node_modules', 'dist', '.angular', 'coverage', 'tmp'],
+    ignores: [
+      'node_modules',
+      'dist',
+      '.angular',
+      'coverage',
+      'tmp',
+      '**/vitest.config.*.timestamp*',
+    ],
   },
   // Base JavaScript rules
   {
@@ -14,7 +21,7 @@ export default [
     rules: {
       'no-var': 'error',
       'prefer-const': 'error',
-      'eqeqeq': ['error', 'always'],
+      eqeqeq: ['error', 'always'],
     },
   },
   // TypeScript configuration
@@ -47,7 +54,7 @@ export default [
         },
       ],
       'max-params': ['error', 8],
-      'complexity': ['error', 11],
+      complexity: ['error', 11],
       'import/order': [
         'error',
         {

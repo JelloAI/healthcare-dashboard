@@ -32,18 +32,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "paths": {
-      "@dashboard/data-access/*": [
-        "./libs/dashboard/data-access-*/src/index.ts"
-      ],
       "@dashboard/data-access-vitals": [
-        "./libs/dashboard/data-access-vitals/src/index.ts"
-      ],
-      "@dashboard/feature/*": ["./libs/dashboard/feature-*/src/index.ts"],
-      "@dashboard/ui/*": ["./libs/dashboard/ui-*/src/index.ts"],
-      "@dashboard/utility/*": ["./libs/dashboard/utility-*/src/index.ts"],
-      "@shared/ui": ["./libs/shared/ui/src/index.ts"],
-      "@shared/models": ["./libs/shared/models/src/index.ts"],
-      "@shared/test-data": ["./libs/shared/test-data/src/index.ts"]
+        "./libs/dashboard/src/lib/data-access-vitals/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

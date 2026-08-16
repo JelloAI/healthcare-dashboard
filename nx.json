@@ -6,7 +6,9 @@
     "production": [
       "default",
       "!{projectRoot}/**/*.spec.ts",
-      "!{projectRoot}/**/*.test.ts"
+      "!{projectRoot}/**/*.test.ts",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json"
     ],
     "typecheck": ["{projectRoot}/**/*.ts"]
   },
@@ -30,6 +32,10 @@
     "e2e": {
       "cache": true,
       "inputs": ["default", "^production"]
+    },
+    "@nx/vitest:test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
     }
   },
   "plugins": [
@@ -44,5 +50,14 @@
     "libsDir": "libs",
     "appsDir": "apps"
   },
-  "analytics": true
+  "analytics": true,
+  "generators": {
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "vitest-analog"
+    },
+    "@nx/angular:component": {
+      "style": "css"
+    }
+  }
 }
