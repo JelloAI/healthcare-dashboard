@@ -101,33 +101,33 @@ export default tseslint.config(
   },
 
   // Tests
-{
-  files: [
-    '**/*.spec.ts',
-    '**/*.test.ts',
-    '**/test-setup*.ts',
-    '**/*.config.ts',
-    '**/*.config.mts',
-  ],
-  rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-argument': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-  },
-  languageOptions: {
-    globals: {
-      describe: 'readonly',
-      it: 'readonly',
-      expect: 'readonly',
-      beforeEach: 'readonly',
-      beforeAll: 'readonly',
-      afterEach: 'readonly',
-      afterAll: 'readonly',
-      vi: 'readonly',
+  {
+    files: [
+      '**/*.spec.ts',
+      '**/*.test.ts',
+      '**/test-setup*.ts',
+      '**/*.config.ts',
+      '**/*.config.mts',
+    ],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+    languageOptions: {
+      globals: {
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        beforeAll: 'readonly',
+        afterEach: 'readonly',
+        afterAll: 'readonly',
+        vi: 'readonly',
+      },
     },
   },
-},
 );
