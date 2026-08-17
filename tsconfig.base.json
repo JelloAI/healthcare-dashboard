@@ -31,11 +31,12 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "paths": {
-      "@dashboard/data-access-vitals": [
-        "./libs/dashboard/src/lib/data-access-vitals/index.ts"
-      ]
-    }
+  "paths": {
+    "@app/*": ["src/app/*"],
+    "@core/*": ["src/app/core/*"],
+    "@features/*": ["src/app/features/*"],
+    "@shared/*": ["src/app/shared/*"]
+  }
   },
   "exclude": ["node_modules", "tmp"]
 }

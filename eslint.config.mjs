@@ -1,9 +1,8 @@
 import js from '@eslint/js';
-import ts from 'typescript-eslint';
 import angular from 'angular-eslint';
-import nxPlugin from '@nx/eslint-plugin';
+import tseslint from 'typescript-eslint';
 
-export default [
+export default tseslint.config(
   {
     ignores: [
       'node_modules',
@@ -14,22 +13,16 @@ export default [
       '**/vitest.config.*.timestamp*',
     ],
   },
-  // Base JavaScript rules
-  {
-    files: ['**/*.ts'],
-    extends: [js.configs.recommended],
-    rules: {
-      'no-var': 'error',
-      'prefer-const': 'error',
-      eqeqeq: ['error', 'always'],
-    },
-  },
-  // TypeScript configuration
+
+  // JavaScript / TypeScript base rules
+  js.configs.recommended,
+
+  // TypeScript rules — ONLY TypeScript files
   {
     files: ['**/*.ts'],
     extends: [
-      ...ts.configs.recommendedTypeChecked,
-      ...ts.configs.stylisticTypeChecked,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {
       parserOptions: {
@@ -37,15 +30,22 @@ export default [
       },
     },
     rules: {
-      '@typescript-eslint/explicit-function-return-types': [
+      'no-var': 'error',
+      'prefer-const': 'error',
+      eqeqeq: ['error', 'always'],
+
+      '@typescript-eslint/explicit-function-return-type': [
         'warn',
         {
           allowExpressions: true,
           allowTypedFunctionExpressions: true,
         },
       ],
+
       '@typescript-eslint/no-explicit-any': 'error',
+
       '@typescript-eslint/no-floating-promises': 'error',
+
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -53,26 +53,20 @@ export default [
           varsIgnorePattern: '^_',
         },
       ],
-      'max-params': ['error', 8],
-      complexity: ['error', 11],
-      'import/order': [
+
+      '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-          ],
-          'newlines-between': 'always',
+          accessibility: 'explicit',
         },
       ],
-      'import/prefer-default-export': 'off',
+
+      'max-params': ['error', 8],
+      complexity: ['error', 11],
     },
   },
-  // Angular-specific rules
+
+  // Angular TypeScript rules
   {
     files: ['**/*.ts'],
     extends: [...angular.configs.tsRecommended],
@@ -85,6 +79,7 @@ export default [
           style: 'camelCase',
         },
       ],
+
       '@angular-eslint/component-selector': [
         'error',
         {
@@ -95,7 +90,8 @@ export default [
       ],
     },
   },
-  // HTML linting
+
+  // Angular template rules
   {
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended],
@@ -103,68 +99,35 @@ export default [
       '@angular-eslint/template/no-negated-async': 'error',
     },
   },
-  // Nx module boundaries
-  {
-    files: ['**/*.ts'],
-    extends: [...nxPlugin.configs['flat/angular']],
-    rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforcedBoundaries: [
-            {
-              sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: [
-                'type:feature',
-                'type:ui',
-                'type:utility',
-                'type:data-access',
-              ],
-            },
-            {
-              sourceTag: 'type:feature',
-              onlyDependOnLibsWithTags: [
-                'type:feature',
-                'type:ui',
-                'type:utility',
-                'type:data-access',
-              ],
-            },
-            {
-              sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:utility'],
-            },
-            {
-              sourceTag: 'type:data-access',
-              onlyDependOnLibsWithTags: ['type:data-access', 'type:utility'],
-            },
-            {
-              sourceTag: 'type:utility',
-              onlyDependOnLibsWithTags: ['type:utility'],
-            },
-          ],
-        },
-      ],
+
+  // Tests
+{
+  files: [
+    '**/*.spec.ts',
+    '**/*.test.ts',
+    '**/test-setup*.ts',
+    '**/*.config.ts',
+    '**/*.config.mts',
+  ],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+  },
+  languageOptions: {
+    globals: {
+      describe: 'readonly',
+      it: 'readonly',
+      expect: 'readonly',
+      beforeEach: 'readonly',
+      beforeAll: 'readonly',
+      afterEach: 'readonly',
+      afterAll: 'readonly',
+      vi: 'readonly',
     },
   },
-  // Test files (relaxed rules)
-  {
-    files: ['**/*.spec.ts', '**/*.test.ts'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-    },
-    languageOptions: {
-      globals: {
-        describe: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        beforeAll: 'readonly',
-        afterAll: 'readonly',
-        vi: 'readonly',
-      },
-    },
-  },
-];
+},
+);
