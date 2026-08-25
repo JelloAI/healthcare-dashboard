@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
-import type { Patient } from '../models';
-import { PATIENTS } from '../test-data/patients.data';
+import type { Patient } from '../../../../shared/models';
+import { PATIENTS } from '../../../../shared/test-data/patients.data';
 
 @Injectable({
   providedIn: 'root',

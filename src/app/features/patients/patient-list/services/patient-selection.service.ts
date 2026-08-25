@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 
-import type { Patient } from '../models';
+import type { Patient } from '../../../../shared/models';
 import { PatientService } from './patient.service';
 
 @Injectable({

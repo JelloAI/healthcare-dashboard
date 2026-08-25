@@ -1,0 +1,33 @@
+<section class="patient-list" aria-labelledby="patient-list-title">
+  <header class="patient-list__header">
+    <div>
+      <p class="patient-list__eyebrow">Assigned patients</p>
+      <h1 id="patient-list-title">Patients</h1>
+    </div>
+
+    <span class="patient-list__count">
+      {{ patients().length }} patients
+    </span>
+  </header>
+
+  <div class="patient-list__items">
+    @for (patient of patients(); track patient.id) {
+      <button
+        type="button"
+        class="patient-list__item"
+        [class.patient-list__item--selected]="
+          selectedPatient()?.id === patient.id
+        "
+        (click)="selectPatient(patient.id)"
+      >
+        <span class="patient-list__name">
+          {{ patient.firstName }} {{ patient.lastName }}
+        </span>
+
+        <span class="patient-list__status">
+          {{ patient.status }}
+        </span>
+      </button>
+    }
+  </div>
+</section>
