@@ -1,0 +1,171 @@
+:host {
+  display: block;
+}
+
+.patient-details {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.patient-details__navigation {
+  margin-bottom: 1.5rem;
+}
+
+.patient-details__navigation a,
+.patient-details--not-found a {
+  font-weight: 600;
+}
+
+.patient-details__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.patient-details__eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.875rem;
+}
+
+.patient-details__header h1 {
+  margin: 0;
+}
+
+.patient-details__id {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+}
+
+.patient-details__status {
+  padding: 0.5rem 0.75rem;
+  border: 2px solid currentColor;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.patient-details__status--attention,
+.patient-details__status--critical {
+  font-weight: 700;
+}
+
+.patient-details__section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+}
+
+.patient-details__section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.patient-details__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0;
+}
+
+.patient-details__grid div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.patient-details__grid dt {
+  font-size: 0.875rem;
+}
+
+.patient-details__grid dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.patient-details__table-wrapper {
+  overflow-x: auto;
+}
+
+.patient-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.patient-details th,
+.patient-details td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid currentColor;
+  vertical-align: top;
+}
+
+.patient-details th {
+  font-weight: 700;
+}
+
+.patient-details__vitals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.patient-details__vitals div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.patient-details__vitals span {
+  font-size: 0.875rem;
+}
+
+.patient-details__vitals strong {
+  font-size: 1.125rem;
+}
+
+.patient-details__notes {
+  display: grid;
+  gap: 1rem;
+}
+
+.patient-details__note {
+  padding: 1rem;
+  border-left: 4px solid currentColor;
+}
+
+.patient-details__note header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.patient-details__note header span {
+  font-size: 0.875rem;
+}
+
+.patient-details__note p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.patient-details--not-found {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .patient-details {
+    padding: 1rem;
+  }
+
+  .patient-details__header {
+    flex-direction: column;
+  }
+
+  .patient-details__grid,
+  .patient-details__vitals {
+    grid-template-columns: 1fr;
+  }
+}

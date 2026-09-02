@@ -3,6 +3,7 @@ import {
   Component,
   inject,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PatientSelectionService } from './services/patient-selection.service';
 import { PatientService } from './services/patient.service';
@@ -18,6 +19,7 @@ export class PatientListComponent {
   private readonly patientSelectionService = inject(
     PatientSelectionService,
   );
+  private readonly router = inject(Router);
 
   public readonly patients = this.patientService.allPatients;
   public readonly selectedPatient =
@@ -25,5 +27,6 @@ export class PatientListComponent {
 
   public selectPatient(patientId: string): void {
     this.patientSelectionService.selectPatient(patientId);
+    void this.router.navigate(['/patients', patientId]);
   }
 }

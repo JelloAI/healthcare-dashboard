@@ -1,0 +1,285 @@
+@if (patient(); as currentPatient) {
+  <main class="patient-details" aria-labelledby="patient-details-title">
+    <nav class="patient-details__navigation" aria-label="Patient navigation">
+      <a routerLink="/patients">← Back to patients</a>
+    </nav>
+
+    <header class="patient-details__header">
+      <div>
+        <p class="patient-details__eyebrow">Patient profile</p>
+
+        <h1 id="patient-details-title">
+          {{ currentPatient.firstName }} {{ currentPatient.lastName }}
+        </h1>
+
+        <p class="patient-details__id">
+          Patient ID: {{ currentPatient.id }}
+        </p>
+      </div>
+
+      <span
+        class="patient-details__status"
+        [class.patient-details__status--attention]="
+          currentPatient.status === 'Needs Attention'
+        "
+        [class.patient-details__status--critical]="
+          currentPatient.status === 'Critical'
+        "
+      >
+        {{ currentPatient.status }}
+      </span>
+    </header>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="demographics-title"
+    >
+      <h2 id="demographics-title">Demographics</h2>
+
+      <dl class="patient-details__grid">
+        <div>
+          <dt>Date of birth</dt>
+          <dd>{{ currentPatient.dateOfBirth }}</dd>
+        </div>
+
+        <div>
+          <dt>Gender</dt>
+          <dd>{{ currentPatient.gender }}</dd>
+        </div>
+
+        <div>
+          <dt>Blood type</dt>
+          <dd>{{ currentPatient.bloodType }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="allergies-title"
+    >
+      <h2 id="allergies-title">Allergies</h2>
+
+      @if (currentPatient.allergies.length > 0) {
+        <div class="patient-details__table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Allergen</th>
+                <th scope="col">Reaction</th>
+                <th scope="col">Severity</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (allergy of currentPatient.allergies; track allergy.id) {
+                <tr>
+                  <td>{{ allergy.allergen }}</td>
+                  <td>{{ allergy.reaction }}</td>
+                  <td>{{ allergy.severity }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p>No known allergies documented.</p>
+      }
+    </section>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="vitals-title"
+    >
+      <h2 id="vitals-title">Latest vitals</h2>
+
+      @if (currentPatient.vitals[0]; as latestVital) {
+        <div class="patient-details__vitals">
+          <div>
+            <span>Blood pressure</span>
+            <strong>
+              {{ latestVital.bloodPressure.systolic }}/{{
+                latestVital.bloodPressure.diastolic
+              }}
+              mmHg
+            </strong>
+          </div>
+
+          <div>
+            <span>Heart rate</span>
+            <strong>{{ latestVital.heartRate }} bpm</strong>
+          </div>
+
+          <div>
+            <span>Respiratory rate</span>
+            <strong>{{ latestVital.respiratoryRate }} /min</strong>
+          </div>
+
+          <div>
+            <span>Temperature</span>
+            <strong>{{ latestVital.temperature }} °F</strong>
+          </div>
+
+          <div>
+            <span>Oxygen saturation</span>
+            <strong>{{ latestVital.oxygenSaturation }}%</strong>
+          </div>
+
+          <div>
+            <span>Weight</span>
+            <strong>{{ latestVital.weight }} lb</strong>
+          </div>
+        </div>
+      } @else {
+        <p>No vital signs recorded.</p>
+      }
+    </section>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="medications-title"
+    >
+      <h2 id="medications-title">Medications</h2>
+
+      @if (currentPatient.medications.length > 0) {
+        <div class="patient-details__table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Medication</th>
+                <th scope="col">Dosage</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Route</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (
+                medication of currentPatient.medications;
+                track medication.id
+              ) {
+                <tr>
+                  <td>{{ medication.name }}</td>
+                  <td>{{ medication.dosage }}</td>
+                  <td>{{ medication.frequency }}</td>
+                  <td>{{ medication.route }}</td>
+                  <td>{{ medication.status }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p>No medications documented.</p>
+      }
+    </section>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="labs-title"
+    >
+      <h2 id="labs-title">Lab results</h2>
+
+      @if (currentPatient.labResults.length > 0) {
+        <div class="patient-details__table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Test</th>
+                <th scope="col">Result</th>
+                <th scope="col">Reference range</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (lab of currentPatient.labResults; track lab.id) {
+                <tr>
+                  <td>{{ lab.testName }}</td>
+                  <td>{{ lab.value }} {{ lab.unit }}</td>
+                  <td>{{ lab.referenceRange }}</td>
+                  <td>{{ lab.status }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p>No lab results documented.</p>
+      }
+    </section>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="appointments-title"
+    >
+      <h2 id="appointments-title">Appointments</h2>
+
+      @if (currentPatient.appointments.length > 0) {
+        <div class="patient-details__table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Reason</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (
+                appointment of currentPatient.appointments;
+                track appointment.id
+              ) {
+                <tr>
+                  <td>{{ appointment.scheduledAt }}</td>
+                  <td>{{ appointment.type }}</td>
+                  <td>{{ appointment.status }}</td>
+                  <td>{{ appointment.reason }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p>No appointments documented.</p>
+      }
+    </section>
+
+    <section
+      class="patient-details__section"
+      aria-labelledby="notes-title"
+    >
+      <h2 id="notes-title">Clinical notes</h2>
+
+      @if (currentPatient.notes.length > 0) {
+        <div class="patient-details__notes">
+          @for (note of currentPatient.notes; track note.id) {
+            <article class="patient-details__note">
+              <header>
+                <strong>{{ note.author }}</strong>
+                <span>{{ note.updatedAt }}</span>
+              </header>
+
+              <p>{{ note.content }}</p>
+            </article>
+          }
+        </div>
+      } @else {
+        <p>No clinical notes documented.</p>
+      }
+    </section>
+  </main>
+} @else {
+  <main class="patient-details patient-details--not-found">
+    <h1>Patient not found</h1>
+
+    <p>
+      The requested patient could not be found.
+    </p>
+
+    <a routerLink="/patients">Return to patients</a>
+  </main>
+}
