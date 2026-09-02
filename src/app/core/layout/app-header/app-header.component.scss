@@ -1,0 +1,97 @@
+:host {
+  display: block;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #d9e0e6;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-header__brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 8px;
+  background: #17212b;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.app-header__brand > div {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.app-header__title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.app-header__subtitle {
+  color: #66727e;
+  font-size: 0.75rem;
+}
+
+.app-header__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-header__avatar {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #c8d1d9;
+  border-radius: 50%;
+  background: #eef2f5;
+  color: #34414d;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.app-header__user-info {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.app-header__user-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.app-header__user-role {
+  color: #66727e;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 0 1rem;
+  }
+
+  .app-header__subtitle,
+  .app-header__user-role {
+    display: none;
+  }
+
+  .app-header__title {
+    font-size: 0.875rem;
+  }
+}

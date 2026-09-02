@@ -1,0 +1,46 @@
+<aside class="app-sidebar">
+  <nav
+    class="app-sidebar__navigation"
+    aria-label="Primary navigation"
+  >
+    <p class="app-sidebar__label">Workspace</p>
+
+    <ul class="app-sidebar__list">
+      <li>
+        <a
+          routerLink="/dashboard"
+          routerLinkActive="app-sidebar__link--active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="app-sidebar__link"
+        >
+          Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/patients"
+          routerLinkActive="app-sidebar__link--active"
+          class="app-sidebar__link"
+        >
+          Patients
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/appointments"
+          routerLinkActive="app-sidebar__link--active"
+          class="app-sidebar__link"
+        >
+          Appointments
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="app-sidebar__footer">
+    <p>Clinical Workspace</p>
+    <span>Version 1.0</span>
+  </div>
+</aside>
