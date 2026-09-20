@@ -5,12 +5,12 @@ import {
   inject,
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-
 import { PatientService } from '../patient-list/services/patient.service';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-patient-details',
-  imports: [RouterLink],
+  imports: [RouterLink, BreadcrumbsComponent],
   templateUrl: './patient-details.component.html',
   styleUrl: './patient-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

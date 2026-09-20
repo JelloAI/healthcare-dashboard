@@ -9,8 +9,17 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'patients',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import(
+            './features/dashboard/dashboard.component'
+          ).then(
+            (component) => component.DashboardComponent,
+          ),
       },
       {
         path: 'patients',

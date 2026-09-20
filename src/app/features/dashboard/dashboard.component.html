@@ -1,0 +1,252 @@
+<section
+  class="dashboard"
+  aria-labelledby="dashboard-title"
+>
+  <header class="dashboard__header">
+    <div>
+      <p class="dashboard__eyebrow">Clinical overview</p>
+
+      <h1 id="dashboard-title">
+        Good morning, Dr. Yang
+      </h1>
+
+      <p class="dashboard__description">
+        Review your assigned patients and recent clinical activity.
+      </p>
+    </div>
+  </header>
+
+  <section class="dashboard__metrics">
+    <div class="dashboard__metric-grid">
+      <article class="dashboard__metric">
+        <p class="dashboard__metric-label">
+          Assigned patients
+        </p>
+
+        <p class="dashboard__metric-value">
+          {{ patientCount() }}
+        </p>
+
+        <a
+          class="dashboard__metric-link"
+          routerLink="/patients"
+        >
+          View patients
+        </a>
+      </article>
+
+      <article class="dashboard__metric dashboard__metric--attention">
+        <p class="dashboard__metric-label">
+          Needs attention
+        </p>
+
+        <p class="dashboard__metric-value">
+          {{ needsAttentionCount() }}
+        </p>
+
+        <a
+          class="dashboard__metric-link"
+          routerLink="/patients"
+        >
+          Review patients
+        </a>
+      </article>
+
+      <article class="dashboard__metric">
+        <p class="dashboard__metric-label">
+          Upcoming appointments
+        </p>
+
+        <p class="dashboard__metric-value">
+          {{ upcomingAppointments().length }}
+        </p>
+
+        <span class="dashboard__metric-context">
+          Scheduled in assigned patient records
+        </span>
+      </article>
+    </div>
+  </section>
+
+  <div class="dashboard__content">
+    <section
+      class="dashboard__panel"
+      aria-labelledby="appointments-title"
+    >
+      <header class="dashboard__panel-header">
+        <div>
+          <p class="dashboard__eyebrow">Schedule</p>
+
+          <h2 id="appointments-title">
+            Upcoming appointments
+          </h2>
+        </div>
+
+        <span class="dashboard__panel-count">
+          {{ upcomingAppointments().length }}
+        </span>
+      </header>
+
+      @if (upcomingAppointments().length > 0) {
+        <div class="dashboard__appointment-list">
+          @for (
+            item of upcomingAppointments();
+            track item.appointment.id
+          ) {
+            <article class="dashboard__appointment">
+              <div class="dashboard__appointment-time">
+                <time [attr.datetime]="item.appointment.scheduledAt">
+                  {{
+                    item.appointment.scheduledAt
+                      | date: 'MMM d, h:mm a'
+                  }}
+                </time>
+              </div>
+
+              <div class="dashboard__appointment-details">
+                <a
+                  [routerLink]="[
+                    '/patients',
+                    item.patient.id
+                  ]"
+                >
+                  {{ item.patient.firstName }}
+                  {{ item.patient.lastName }}
+                </a>
+
+                <p>
+                  {{ item.appointment.type }}
+                  ·
+                  {{ item.appointment.reason }}
+                </p>
+              </div>
+            </article>
+          }
+        </div>
+      } @else {
+        <p class="dashboard__empty-state">
+          No upcoming appointments are currently scheduled.
+        </p>
+      }
+    </section>
+
+    <section
+      class="dashboard__panel"
+      aria-labelledby="attention-title"
+    >
+      <header class="dashboard__panel-header">
+        <div>
+          <p class="dashboard__eyebrow">Clinical priority</p>
+
+          <h2 id="attention-title">
+            Patients requiring attention
+          </h2>
+        </div>
+
+        <span class="dashboard__panel-count">
+          {{ needsAttentionCount() }}
+        </span>
+      </header>
+
+      @if (needsAttentionPatients().length > 0) {
+        <div class="dashboard__patient-list">
+          @for (
+            patient of needsAttentionPatients();
+            track patient.id
+          ) {
+            <a
+              class="dashboard__patient"
+              [routerLink]="[
+                '/patients',
+                patient.id
+              ]"
+            >
+              <span>
+                <strong>
+                  {{ patient.firstName }}
+                  {{ patient.lastName }}
+                </strong>
+
+                <span class="dashboard__patient-id">
+                  {{ patient.id }}
+                </span>
+              </span>
+
+              <span
+                class="dashboard__status"
+                [class.dashboard__status--critical]="
+                  patient.status === 'Critical'
+                "
+              >
+                {{ patient.status }}
+              </span>
+            </a>
+          }
+        </div>
+      } @else {
+        <p class="dashboard__empty-state">
+          No patients currently require attention.
+        </p>
+      }
+    </section>
+
+    <section
+      class="dashboard__panel dashboard__panel--wide"
+      aria-labelledby="activity-title"
+    >
+      <header class="dashboard__panel-header">
+        <div>
+          <p class="dashboard__eyebrow">Patient records</p>
+
+          <h2 id="activity-title">
+            Recent clinical activity
+          </h2>
+        </div>
+      </header>
+
+      @if (recentActivity().length > 0) {
+        <div class="dashboard__activity-list">
+          @for (
+            activity of recentActivity();
+            track activity.noteId
+          ) {
+            <article class="dashboard__activity">
+              <div class="dashboard__activity-header">
+                <a
+                  [routerLink]="[
+                    '/patients',
+                    activity.patient.id
+                  ]"
+                >
+                  {{ activity.patient.firstName }}
+                  {{ activity.patient.lastName }}
+                </a>
+
+                <time
+                  [attr.datetime]="activity.updatedAt"
+                >
+                  {{
+                    activity.updatedAt
+                      | date: 'MMM d, yyyy, h:mm a'
+                  }}
+                </time>
+              </div>
+
+              <p class="dashboard__activity-author">
+                Updated by {{ activity.author }}
+              </p>
+
+              <p class="dashboard__activity-content">
+                {{ activity.content }}
+              </p>
+            </article>
+          }
+        </div>
+      } @else {
+        <p class="dashboard__empty-state">
+          No recent clinical activity is available.
+        </p>
+      }
+    </section>
+  </div>
+</section>

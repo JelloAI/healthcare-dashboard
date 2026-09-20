@@ -1,0 +1,290 @@
+.dashboard {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.dashboard__header {
+  margin-bottom: 2rem;
+}
+
+.dashboard__eyebrow {
+  margin: 0 0 0.35rem;
+  color: #526170;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dashboard h1,
+.dashboard h2,
+.dashboard p {
+  margin-top: 0;
+}
+
+.dashboard h1 {
+  margin-bottom: 0.5rem;
+  color: #17212b;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.2;
+}
+
+.dashboard__description {
+  margin-bottom: 0;
+  color: #526170;
+  font-size: 0.95rem;
+}
+
+.dashboard__metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard__metric,
+.dashboard__panel {
+  border: 1px solid #d9e0e6;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.dashboard__metric {
+  padding: 1.25rem;
+}
+
+.dashboard__metric--attention {
+  border-left: 4px solid #c77b30;
+}
+
+.dashboard__metric-label {
+  margin-bottom: 0.5rem;
+  color: #526170;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.dashboard__metric-value {
+  margin-bottom: 0.75rem;
+  color: #17212b;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.dashboard__metric-link,
+.dashboard__appointment-details a,
+.dashboard__activity-header a {
+  color: #245b7a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dashboard__metric-link {
+  font-size: 0.875rem;
+}
+
+.dashboard__metric-link:hover,
+.dashboard__appointment-details a:hover,
+.dashboard__activity-header a:hover {
+  text-decoration: underline;
+}
+
+.dashboard__metric-context {
+  display: block;
+  color: #697887;
+  font-size: 0.8rem;
+}
+
+.dashboard__content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dashboard__panel {
+  min-width: 0;
+}
+
+.dashboard__panel--wide {
+  grid-column: 1 / -1;
+}
+
+.dashboard__panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid #e3e8ec;
+}
+
+.dashboard__panel-header h2 {
+  margin-bottom: 0;
+  color: #17212b;
+  font-size: 1.05rem;
+}
+
+.dashboard__panel-count {
+  min-width: 2rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid #d9e0e6;
+  border-radius: 999px;
+  color: #526170;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.dashboard__appointment,
+.dashboard__patient,
+.dashboard__activity {
+  border-bottom: 1px solid #e8edf1;
+}
+
+.dashboard__appointment {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.dashboard__appointment:last-child,
+.dashboard__patient:last-child,
+.dashboard__activity:last-child {
+  border-bottom: 0;
+}
+
+.dashboard__appointment-time {
+  color: #526170;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.dashboard__appointment-details p {
+  margin: 0.25rem 0 0;
+  color: #697887;
+  font-size: 0.875rem;
+}
+
+.dashboard__patient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dashboard__patient:hover {
+  background: #f7f9fb;
+}
+
+.dashboard__patient strong,
+.dashboard__patient-id {
+  display: block;
+}
+
+.dashboard__patient strong {
+  color: #17212b;
+  font-size: 0.9rem;
+}
+
+.dashboard__patient-id {
+  margin-top: 0.15rem;
+  color: #697887;
+  font-size: 0.75rem;
+}
+
+.dashboard__status {
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.25rem;
+  background: #fff4df;
+  color: #7a4c13;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.dashboard__status--critical {
+  background: #fde8e8;
+  color: #9b2929;
+}
+
+.dashboard__activity {
+  padding: 1rem 1.25rem;
+}
+
+.dashboard__activity-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.dashboard__activity-header time {
+  color: #697887;
+  font-size: 0.75rem;
+}
+
+.dashboard__activity-author {
+  margin: 0.25rem 0 0.5rem;
+  color: #697887;
+  font-size: 0.8rem;
+}
+
+.dashboard__activity-content,
+.dashboard__empty-state {
+  color: #526170;
+  font-size: 0.875rem;
+}
+
+.dashboard__activity-content {
+  margin-bottom: 0;
+}
+
+.dashboard__empty-state {
+  padding: 1.25rem;
+  margin-bottom: 0;
+}
+
+.dashboard__metric-link:focus-visible,
+.dashboard__patient:focus-visible,
+.dashboard__appointment-details a:focus-visible,
+.dashboard__activity-header a:focus-visible {
+  outline: 3px solid #245b7a;
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    padding: 1.5rem;
+  }
+
+  .dashboard__metric-grid,
+  .dashboard__content {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__panel--wide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .dashboard__appointment {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .dashboard__patient
+  .dashboard__activity-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

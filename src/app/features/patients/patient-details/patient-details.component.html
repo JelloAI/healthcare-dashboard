@@ -1,9 +1,20 @@
 @if (patient(); as currentPatient) {
-  <main class="patient-details" aria-labelledby="patient-details-title">
-    <nav class="patient-details__navigation" aria-label="Patient navigation">
-      <a routerLink="/patients">← Back to patients</a>
-    </nav>
-
+  <main
+    class="patient-details"
+    aria-labelledby="patient-details-title"
+  >
+    <app-breadcrumbs
+      [items]="[
+        { label: 'Dashboard', url: '/dashboard' },
+        { label: 'Patients', url: '/patients' },
+        {
+          label:
+            currentPatient.firstName +
+            ' ' +
+            currentPatient.lastName
+        }
+      ]"
+    />
     <header class="patient-details__header">
       <div>
         <p class="patient-details__eyebrow">Patient profile</p>

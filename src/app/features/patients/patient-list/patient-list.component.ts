@@ -4,15 +4,17 @@ import {
   inject,
 } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { PatientSelectionService } from './services/patient-selection.service';
 import { PatientService } from './services/patient.service';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+  BreadcrumbsComponent],
 })
 export class PatientListComponent {
   private readonly patientService = inject(PatientService);

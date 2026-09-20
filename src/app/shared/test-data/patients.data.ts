@@ -56,7 +56,7 @@ export const PATIENTS: readonly Patient[] = [
     appointments: [
       {
         id: 'APT-1001',
-        scheduledAt: '2026-08-27T10:00:00Z',
+        scheduledAt: '2026-11-27T10:00:00Z',
         type: 'Follow-up',
         status: 'Scheduled',
         reason: 'Routine blood pressure follow-up',
@@ -77,7 +77,7 @@ export const PATIENTS: readonly Patient[] = [
   {
     id: 'PT-1002',
     firstName: 'Alex',
-    lastName: 'Morgan',
+    lastName: 'Karev',
     dateOfBirth: '1975-03-22',
     gender: 'Male',
     status: 'Needs Attention',
@@ -122,7 +122,7 @@ export const PATIENTS: readonly Patient[] = [
     appointments: [
       {
         id: 'APT-1002',
-        scheduledAt: '2026-08-25T14:30:00Z',
+        scheduledAt: '2026-11-25T14:30:00Z',
         type: 'Lab Review',
         status: 'Scheduled',
         reason: 'Review elevated cholesterol results',
@@ -195,7 +195,7 @@ export const PATIENTS: readonly Patient[] = [
     appointments: [
       {
         id: 'APT-1003',
-        scheduledAt: '2026-09-03T09:30:00Z',
+        scheduledAt: '2026-11-03T09:30:00Z',
         type: 'Annual Physical',
         status: 'Scheduled',
         reason: 'Annual preventive examination',
